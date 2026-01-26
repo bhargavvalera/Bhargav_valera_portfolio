@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../Constants/colors.dart';
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final Function(int) onNavClick;
+  const HeroSection({super.key,required this.onNavClick});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isMobile = size.width < 800;
 
-    // Image Container ko ek variable/widget mein define kiya taaki reuse kar sakein
     Widget profileImage() {
       return Container(
         width: isMobile ? 220 : 280, // Mobile pe thoda chhota
@@ -26,8 +26,8 @@ class HeroSection extends StatelessWidget {
             ),
           ],
           image: const DecorationImage(
-            image: AssetImage('assets/images/meee.jpeg'),
-            fit: BoxFit.cover,
+            image: AssetImage('assets/images/port_img.jpeg'),
+            fit: BoxFit.contain,
           ),
         ),
       );
@@ -62,7 +62,9 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              onNavClick(3); // Scroll to Contact
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: CustomColor.yellowPrimary,
               foregroundColor: Colors.black87,

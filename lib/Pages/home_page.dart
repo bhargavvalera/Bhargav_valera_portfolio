@@ -75,27 +75,31 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: CustomColor.scaffoldBg,
-      drawer: MobileDrawer(onNavClick: scrollToSection), // Pass click logic to drawer too
+      drawer: MobileDrawer(onNavClick: scrollToSection),
+      appBar: AppBar(
+        elevation: 0, // ✅ shadow remove
+        toolbarHeight: 80,
+        backgroundColor: CustomColor.scaffoldBg,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+
+        title: NavBar(
+          scaffoldKey: scaffoldKey,
+          onNavClick: scrollToSection,
+        ),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 80), // Space for fixed Navbar
                 // 3. Pass keys down to BodySection so it can assign them to widgets
-                BodySection(sectionKeys: sectionKeys),
+                BodySection(onNavClick:scrollToSection,sectionKeys: sectionKeys),
                 const FooterSection(),
               ],
             ),
           ),
           // Floating Navbar
-          Positioned(
-            top: 0, left: 0, right: 0,
-            child: NavBar(
-              scaffoldKey: scaffoldKey,
-              onNavClick: scrollToSection, // 4. Connect logic to Navbar
-            ),
-          ),
         ],
       ),
     );
@@ -106,8 +110,10 @@ class HomePage extends StatelessWidget {
 class BodySection extends StatelessWidget {
   // Accept keys from parent
   final List<GlobalKey> sectionKeys;
+  final Function(int) onNavClick;
 
-  const BodySection({super.key, required this.sectionKeys});
+
+  const BodySection({super.key, required this.sectionKeys,required this.onNavClick});
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +128,9 @@ class BodySection extends StatelessWidget {
               // Assign Key 0 -> Home/Hero
               Container(
                   key: sectionKeys[0],
-                  child: const HeroSection()
+                  child:  HeroSection(
+                    onNavClick:onNavClick
+                  )
               ),
 
               const SizedBox(height: 80),
@@ -179,13 +187,20 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const textStyle = TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary);
+    final textPainter=TextPainter(
+      text: TextSpan(text: title, style: textStyle),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout();
+    final textwidth = textPainter.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary)),
-        // Optional: Add a yellow underline for style
         Container(
-            width: 50, height: 3,
+            width: textwidth, height: 3,
             margin: const EdgeInsets.only(top: 5),
             color: CustomColor.yellowPrimary
         )
@@ -289,7 +304,7 @@ class FooterSection extends StatelessWidget {
       color: CustomColor.bgLight,
       width: double.infinity,
       child: const Center(
-        child: Text("© 2025 Bhargav • Built with Flutter", style: TextStyle(color: Colors.white38)),
+        child: Text("© 2026 Bhargav • Built with Flutter", style: TextStyle(color: Colors.white38)),
       ),
     );
   }

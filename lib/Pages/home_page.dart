@@ -39,13 +39,24 @@ List<Project> myProjects = [
     description: "A minimalist, real-time weather application featuring dynamic animations, location-based 7-day forecasts, and detailed atmospheric data visualization.",
     techStack: "Flutter, OpenWeatherMap API, Geolocator, Lottie",
   ),
-  Project(title: "ATPt",
+  Project(title: "ATPT",
       description: "ATPT (Any Time Party Time) is a fast and convenient food-ordering app designed for party and event catering. It allows users to browse menus, place customized bulk orders, and track inquiries in real time. Built with Flutter, it streamlines the entire party-food ordering workflow for both customers and vendors.",
       techStack: "Flutter,Firebase,API Integration"),
 ];
 
 List<String> mySkills = [
-  "Flutter", "Dart", "Mobile App Development", "CI/CD", "Git/GitHub", "Firebase", "REST API", "GetX/Provider", "UI/UX Implementation"
+  "Flutter (Cross-platform Development)",
+  "Dart Programming",
+  "Firebase (Auth, Firestore, FCM, Storage)",
+  "REST API Integration & JSON Handling",
+  "State Management (Provider, GetX)",
+  "Clean Architecture (MVC/MVVM)",
+  "Responsive UI & Material Design",
+  "Performance Optimization & Debugging",
+  "Git & GitHub (Version Control)",
+  "CI/CD Basics",
+  "Payment Integration (Razorpay)",
+  "AI-assisted Development"
 ];
 
 List<String> navTitles = ["Home", "Skills", "Projects", "Contact"];

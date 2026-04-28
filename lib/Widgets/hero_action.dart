@@ -44,8 +44,9 @@ class HeroSection extends StatelessWidget {
             style: TextStyle(fontSize: 20, color: CustomColor.yellowPrimary, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
+
           Text(
-            "Flutter Developer\n& API Integrator",
+            "Flutter Developer building AI-powered Mobile Products",
             textAlign: isMobile ? TextAlign.center : TextAlign.start,
             style: TextStyle(
               fontSize: isMobile ? 32 : 50, // Mobile font thoda adjust kiya
@@ -56,7 +57,7 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            "I transform ideas into high-performance mobile apps.\nSpecialized in clean UI, REST APIs, and efficient state management.",
+            'I design and ship Flutter apps that feel native, perform at scale, and solve real problems. Focused on clean architecture,seamless UI, and production-ready performance',
             textAlign: isMobile ? TextAlign.center : TextAlign.start,
             style: const TextStyle(fontSize: 16, color: CustomColor.whiteSecondary, height: 1.5),
           ),

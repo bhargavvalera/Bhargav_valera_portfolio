@@ -65828,8 +65828,8 @@ return A.f2(s,s,s,s,new A.dz(B.cY,B.xn,A.abc(B.aM,4),s,A.c([new A.dl(5,B.fR,A.az
 $S:150}
 A.SW.prototype={
 $0(){var s=null,r=this.b,q=r?B.ay:B.ax,p=r?B.cv:B.al
-p=A.iU("Flutter Developer\n& API Integrator",A.mL(s,s,B.d1,s,s,s,s,s,s,s,s,r?32:50,s,s,B.hY,s,1.1,!0,s,s,s,s,s,s,s,s),p)
-return A.ju(A.c([B.MR,B.vO,p,B.j5,A.iU("I transform ideas into high-performance mobile apps.\nSpecialized in clean UI, REST APIs, and efficient state management.",B.KT,r?B.cv:B.al),B.j6,A.aou(!1,B.MO,s,s,s,s,s,s,new A.SX(this.a),s,A.afk(s,s,B.aM,s,s,s,s,s,s,B.C,s,s,B.Aa,s,new A.ck(A.nt(30),B.o),s,s,s,s,s))],t.E),q,B.eO)},
+p=A.iU("Flutter Developer building AI-powered Mobile Products",A.mL(s,s,B.d1,s,s,s,s,s,s,s,s,r?32:50,s,s,B.hY,s,1.1,!0,s,s,s,s,s,s,s,s),p)
+return A.ju(A.c([B.MR,B.vO,p,B.j5,A.iU("I design and ship Flutter apps that feel native, perform at scale, and solve real problems. Focused on clean architecture,seamless UI, and production-ready performance",B.KT,r?B.cv:B.al),B.j6,A.aou(!1,B.MO,s,s,s,s,s,s,new A.SX(this.a),s,A.afk(s,s,B.aM,s,s,s,s,s,s,B.C,s,s,B.Aa,s,new A.ck(A.nt(30),B.o),s,s,s,s,s))],t.E),q,B.eO)},
 $S:150}
 A.SX.prototype={
 $0(){this.a.c.$1(3)},
@@ -70754,7 +70754,7 @@ $.fu=function(){var s=t.n
 return A.c([A.c([0.41233895,0.35762064,0.18051042],s),A.c([0.2126,0.7152,0.0722],s),A.c([0.01932141,0.11916382,0.95034478],s)],t.zg)}()
 $.nF=A.c([95.047,100,108.883],t.n)
 $.awz=A.c(["Home","Skills","Projects","Contacts"],t.s)
-$.awx=A.c(["Flutter","Dart","Mobile App Development","CI/CD","Git/GitHub","Firebase","REST API","GetX/Provider","UI/UX Implementation"],t.s)
+$.awx=A.c(["Flutter (Cross-platform Development)","Dart Programming","Firebase (Auth, Firestore, FCM, Storage)","REST API Integration & JSON Handling","State Management (Provider, GetX)","Clean Architecture (MVC/MVVM)","Responsive UI & Material Design","Performance Optimization & Debugging","Git & GitHub (Version Control)","CI/CD Basics","Payment Integration (Razorpay)","AI-assisted Development"],t.s)
 $.awy=A.c(["Home","Skills","Projects","Contact"],t.s)
 $.app=A.u(t.S,A.ae("axI"))})();(function lazyInitializers(){var s=hunkHelpers.lazyFinal,r=hunkHelpers.lazy
 s($,"aA4","qv",()=>A.w(A.w(A.a_(),"ClipOp"),"Intersect"))
@@ -71242,7 +71242,7 @@ h=[400*d/(d+27.13),400*c/(c+27.13),400*i/(i+27.13)]
 return new A.a34(l,(40*h[0]+20*h[1]+h[2])/20*k,k,k,a1,1,q,m,A.zU(m,0.25),1.48+e)})
 s($,"ayz","aaS",()=>A.afo())
 r($,"aBk","amJ",()=>{var q="Flutter, Provider, Dart, Rest APIS"
-return A.c([A.uK("Operational dashboard for managing kitchen inventory, tracking raw material procurement, and coordinating staff logistics for large-scale weddings.",q,"Shree Hari Cateres"),A.uK("A comprehensive catering management system for tracking live orders, managing event schedules, and automating client billing and notifications.",q,"Sukhadiya Cateres"),A.uK("Digital menu catalogue and booking application allowing clients to customize food packages, estimate costs, and schedule services for events.",q,"Amonkar Cateres"),A.uK("About This is a Wedding Food Ordering and Management app developed using Flutter. Users can place food orders, track real-time order status, and view order history. The Captain app is designed to manage orders only, with statuses like New, In Progress, and Delivered. It ensures smooth and organized food order handling during wedding events.","Flutter,GetX,RestAPI,Dart","Just Wedding Software"),A.uK("A minimalist, real-time weather application featuring dynamic animations, location-based 7-day forecasts, and detailed atmospheric data visualization.","Flutter, OpenWeatherMap API, Geolocator, Lottie","SkySnap"),A.uK("ATPT (Any Time Party Time) is a fast and convenient food-ordering app designed for party and event catering. It allows users to browse menus, place customized bulk orders, and track inquiries in real time. Built with Flutter, it streamlines the entire party-food ordering workflow for both customers and vendors.","Flutter,Firebase,API Integration","ATPt")],A.ae("v<oz>"))})
+return A.c([A.uK("Operational dashboard for managing kitchen inventory, tracking raw material procurement, and coordinating staff logistics for large-scale weddings.",q,"Shree Hari Cateres"),A.uK("A comprehensive catering management system for tracking live orders, managing event schedules, and automating client billing and notifications.",q,"Sukhadiya Cateres"),A.uK("Digital menu catalogue and booking application allowing clients to customize food packages, estimate costs, and schedule services for events.",q,"Amonkar Cateres"),A.uK("About This is a Wedding Food Ordering and Management app developed using Flutter. Users can place food orders, track real-time order status, and view order history. The Captain app is designed to manage orders only, with statuses like New, In Progress, and Delivered. It ensures smooth and organized food order handling during wedding events.","Flutter,GetX,RestAPI,Dart","Just Wedding Software"),A.uK("A minimalist, real-time weather application featuring dynamic animations, location-based 7-day forecasts, and detailed atmospheric data visualization.","Flutter, OpenWeatherMap API, Geolocator, Lottie","SkySnap"),A.uK("ATPT (Any Time Party Time) is a fast and convenient food-ordering app designed for party and event catering. It allows users to browse menus, place customized bulk orders, and track inquiries in real time. Built with Flutter, it streamlines the entire party-food ordering workflow for both customers and vendors.","Flutter,Firebase,API Integration","ATPT")],A.ae("v<oz>"))})
 s($,"azj","ae2",()=>new A.D())
 r($,"asj","ali",()=>{var q=new A.X6()
 q.S5($.ae2())

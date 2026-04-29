@@ -42,6 +42,10 @@ List<Project> myProjects = [
   Project(title: "ATPT",
       description: "ATPT (Any Time Party Time) is a fast and convenient food-ordering app designed for party and event catering. It allows users to browse menus, place customized bulk orders, and track inquiries in real time. Built with Flutter, it streamlines the entire party-food ordering workflow for both customers and vendors.",
       techStack: "Flutter,Firebase,API Integration"),
+
+  Project(title: "DreamFirst",
+      description: "DreamFirst is a Flutter-based mobile news app that delivers real-time news articles and videos with a clean, user-friendly interface.It supports role-based workflows for admins, reporters, and users, enabling efficient content creation, moderation, and publishing.Powered by Firebase, it includes authentication, Firestore database, and push notifications for a secure and scalable experience.",
+      techStack: "Flutter, Dart, Firebase (Auth, Firestore, Cloud Functions, FCM), Provider, REST APIs, Netlify, Git/GitHub, AdMob"),
 ];
 
 List<String> mySkills = [
@@ -56,7 +60,7 @@ List<String> mySkills = [
   "Git & GitHub (Version Control)",
   "CI/CD Basics",
   "Payment Integration (Razorpay)",
-  "AI-assisted Development"
+  "AI-assisted Development",
 ];
 
 List<String> navTitles = ["Home", "Skills", "Projects", "Contact"];
@@ -285,8 +289,10 @@ class MobileDrawer extends StatelessWidget {
   final Function(int) onNavClick; // Added callback
   const MobileDrawer({super.key, required this.onNavClick});
 
+
   @override
   Widget build(BuildContext context) {
+
     return Drawer(
       backgroundColor: CustomColor.scaffoldBg,
       child: ListView(
@@ -310,13 +316,21 @@ class FooterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final year = DateTime.now().year;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       color: CustomColor.bgLight,
       width: double.infinity,
-      child: const Center(
-        child: Text("© 2026 Bhargav • Built with Flutter", style: TextStyle(color: Colors.white38)),
-      ),
+      child: Center(
+          child: Text(
+            "© $year Bhargav Valera · Built with Flutter",
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.6),
+              fontSize: 14,
+              letterSpacing: 0.5,
+            ),
+          )      ),
     );
   }
 }

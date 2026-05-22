@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Constants/new_items.dart';
+import '../constants/new_items.dart';
 import '../constants/colors.dart';
 
 class NavBar extends StatelessWidget {

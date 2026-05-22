@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../Constants/colors.dart';
-import '../Widgets/contact_section.dart';
-import '../Widgets/hero_action.dart';
-import '../Widgets/nav_item.dart'; // Ensure this exists or use the NavBar code I gave earlier
-import '../Widgets/skills_section.dart';
+import '../constants/colors.dart';
+import '../widgets/contact_section.dart';
+import '../widgets/hero_action.dart';
+import '../widgets/nav_item.dart'; // Ensure this exists or use the NavBar code I gave earlier
+import '../widgets/skills_section.dart';
 
 // --- MODELS ---
 class Project {

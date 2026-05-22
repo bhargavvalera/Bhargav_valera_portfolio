@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../Constants/colors.dart';
+import '../constants/colors.dart';
 
 // 1. Skill Data Model created to hold custom icons
 class SkillItem {

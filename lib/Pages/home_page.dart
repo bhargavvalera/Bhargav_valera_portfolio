@@ -10,58 +10,39 @@ class Project {
   final String title;
   final String description;
   final String techStack;
-  Project({required this.title, required this.description, required this.techStack});
+  final String? imagePath;
+  Project({required this.title, required this.description, this.imagePath,required this.techStack});
 }
 
 // --- DATA ---
 List<Project> myProjects = [
-  Project(
-    title: "Shree Hari Cateres",
-    description: "Operational dashboard for managing kitchen inventory, tracking raw material procurement, and coordinating staff logistics for large-scale weddings.",
-    techStack: "Flutter, Provider, Dart, Rest APIS",
-  ),
+
   Project(
     title: "Sukhadiya Cateres",
     description: "A comprehensive catering management system for tracking live orders, managing event schedules, and automating client billing and notifications.",
     techStack: "Flutter, Provider, Dart, Rest APIS",
+    imagePath: 'assets/images/sukhadiya_p.jpeg'
+
   ),
-  Project(
-    title: "Amonkar Cateres",
-    description: "Digital menu catalogue and booking application allowing clients to customize food packages, estimate costs, and schedule services for events.",
-    techStack: "Flutter, Provider, Dart, Rest APIS",
-  ),
-  Project(title: "Just Wedding Software",
-      description: "About This is a Wedding Food Ordering and Management app developed using Flutter. Users can place food orders, track real-time order status, and view order history. The Captain app is designed to manage orders only, with statuses like New, In Progress, and Delivered. It ensures smooth and organized food order handling during wedding events.",
-      techStack: "Flutter,GetX,RestAPI,Dart",),
+
 
   Project(
     title: "SkySnap",
     description: "A minimalist, real-time weather application featuring dynamic animations, location-based 7-day forecasts, and detailed atmospheric data visualization.",
     techStack: "Flutter, OpenWeatherMap API, Geolocator, Lottie",
+    imagePath: 'assets/images/skysnap_p.jpeg'
   ),
   Project(title: "ATPT",
+      imagePath: 'assets/images/atpt_p.jpeg',
       description: "ATPT (Any Time Party Time) is a fast and convenient food-ordering app designed for party and event catering. It allows users to browse menus, place customized bulk orders, and track inquiries in real time. Built with Flutter, it streamlines the entire party-food ordering workflow for both customers and vendors.",
       techStack: "Flutter,Firebase,API Integration"),
 
   Project(title: "DreamFirst",
+      imagePath: 'assets/images/user_home.jpeg',
       description: "DreamFirst is a Flutter-based mobile news app that delivers real-time news articles and videos with a clean, user-friendly interface.It supports role-based workflows for admins, reporters, and users, enabling efficient content creation, moderation, and publishing.Powered by Firebase, it includes authentication, Firestore database, and push notifications for a secure and scalable experience.",
       techStack: "Flutter, Dart, Firebase (Auth, Firestore, Cloud Functions, FCM), Provider, REST APIs, Netlify, Git/GitHub, AdMob"),
 ];
 
-List<String> mySkills = [
-  "Flutter (Cross-platform Development)",
-  "Dart Programming",
-  "Firebase (Auth, Firestore, FCM, Storage)",
-  "REST API Integration & JSON Handling",
-  "State Management (Provider, GetX)",
-  "Clean Architecture (MVC/MVVM)",
-  "Responsive UI & Material Design",
-  "Performance Optimization & Debugging",
-  "Git & GitHub (Version Control)",
-  "CI/CD Basics",
-  "Payment Integration (Razorpay)",
-  "AI-assisted Development",
-];
 
 List<String> navTitles = ["Home", "Skills", "Projects", "Contact"];
 
@@ -224,67 +205,214 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
-class ProjectsSection extends StatelessWidget {
+
+class ProjectsSection extends StatefulWidget {
   const ProjectsSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double cardWidth = constraints.maxWidth > 800 ? 320 : constraints.maxWidth;
+  State<ProjectsSection> createState() => _ProjectsSectionState();
+}
 
-        return Wrap(
-          spacing: 20,
-          runSpacing: 20,
-          alignment: WrapAlignment.center,
-          children: myProjects.map((project) => Container(
-            width: cardWidth,
-            padding: const EdgeInsets.all(25),
-            decoration: BoxDecoration(
-              color: CustomColor.bgLight,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white10),
-              boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10, offset: Offset(0, 5))],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
+class _ProjectsSectionState extends State<ProjectsSection> {
+  int hoveredIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isDesktop = size.width > 950; // Adjusted breakdown for vertical image balance
+
+    if (!isDesktop) {
+      return buildMobileLayout();
+    }
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // LEFT SIDE: Interactive Project List (Takes 55% space)
+        Expanded(
+          flex: 11,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: List.generate(myProjects.length, (index) {
+              final project = myProjects[index];
+              final isHovered = hoveredIndex == index;
+
+              return MouseRegion(
+                onEnter: (_) => setState(() => hoveredIndex = index),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Colors.black26,
-                    borderRadius: BorderRadius.circular(10),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.white.withOpacity(0.05)),
+                    ),
+                    color: isHovered ? Colors.white.withOpacity(0.02) : Colors.transparent,
                   ),
-                  child: const Icon(Icons.smartphone_rounded, color: CustomColor.yellowPrimary),
+                  child: Row(
+                    children: [
+                      Text(
+                        "0${index + 1}",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: isHovered ? CustomColor.yellowPrimary : Colors.white24,
+                        ),
+                      ),
+                      const SizedBox(width: 30),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              project.title,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: isHovered ? CustomColor.yellowPrimary : CustomColor.whitePrimary,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              project.description,
+                              style: const TextStyle(fontSize: 14, color: CustomColor.whiteSecondary, height: 1.4),
+                            ),
+                            const SizedBox(height: 12),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: project.techStack.split(',').map((tag) => Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.05),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  tag.trim(),
+                                  style: const TextStyle(fontSize: 12, color: CustomColor.whiteSecondary),
+                                ),
+                              )).toList(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_outward_rounded,
+                        color: isHovered ? CustomColor.yellowPrimary : Colors.white38,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 15),
-                Text(
-                  project.title,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary),
+              );
+            }),
+          ),
+        ),
+
+        const SizedBox(width: 40),
+
+        // RIGHT SIDE: Fixed Frame for Mobile Portrait Screenshots (Takes 45% space)
+        Expanded(
+          flex: 9,
+          child: Center(
+            child: Container(
+              height: 500, // Thoda extra vertical height taaki phone UI clear dikhe
+              width: double.infinity,
+              padding: const EdgeInsets.all(16), // Padding inside container to prevent edge bleeding
+              decoration: BoxDecoration(
+                color: Colors.black45, // Neutral background overlay for premium phone look
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: Colors.white.withOpacity(0.08)),
+              ),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: ScaleTransition(scale: Tween<double>(begin: 0.97, end: 1.0).animate(animation), child: child),
+                  );
+                },
+                key: ValueKey<int>(hoveredIndex),
+                // FIXED CONTAINER RATIO: BoxFit.contain keeps the aspect ratio of screenshot absolutely crisp
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    myProjects[hoveredIndex].imagePath ?? '',
+                    fit: BoxFit.contain,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  project.description,
-                  style: const TextStyle(fontSize: 14, color: CustomColor.whiteSecondary, height: 1.4),
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: project.techStack.split(',').map((tag) => Text(
-                      "#${tag.trim()}",
-                      style: const TextStyle(fontSize: 12, color: CustomColor.yellowSecondary, fontWeight: FontWeight.w600)
-                  )).toList(),
-                ),
-              ],
+              ),
             ),
-          )).toList(),
-        );
-      },
+          ),
+        ),
+      ],
+    );
+  }
+
+  // MOBILE LAYOUT: Side-by-side or controlled layout for small screens
+  Widget buildMobileLayout() {
+    return Column(
+      children: myProjects.map((project) => Container(
+        margin: const EdgeInsets.only(bottom: 25),
+        decoration: BoxDecoration(
+          color: CustomColor.bgLight,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white10),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Fixed container height for preview inside mobile card
+            Container(
+              height: 280, // Portrait image ke liye standard height framework
+              width: double.infinity,
+              color: Colors.black26,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Image.asset(
+                project.imagePath ?? '',
+                fit: BoxFit.contain, // Stretches fixed, rendering actual phone UI nicely
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      project.title,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary)
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                      project.description,
+                      style: const TextStyle(fontSize: 14, color: CustomColor.whiteSecondary, height: 1.4)
+                  ),
+                  const SizedBox(height: 15),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: project.techStack.split(',').map((tag) => Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: CustomColor.yellowPrimary.withOpacity(0.08),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        tag.trim(),
+                        style: const TextStyle(fontSize: 11, color: CustomColor.yellowSecondary, fontWeight: FontWeight.w600),
+                      ),
+                    )).toList(),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      )).toList(),
     );
   }
 }
-
 class MobileDrawer extends StatelessWidget {
   final Function(int) onNavClick; // Added callback
   const MobileDrawer({super.key, required this.onNavClick});

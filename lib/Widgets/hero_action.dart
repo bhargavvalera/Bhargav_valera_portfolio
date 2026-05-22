@@ -1,39 +1,63 @@
 import 'package:flutter/material.dart';
 import '../Constants/colors.dart';
 
-class HeroSection extends StatelessWidget {
+class HeroSection extends StatefulWidget {
   final Function(int) onNavClick;
-  const HeroSection({super.key,required this.onNavClick});
+  const HeroSection({super.key, required this.onNavClick});
+
+  @override
+  State<HeroSection> createState() => _HeroSectionState();
+}
+
+class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStateMixin {
+  late final AnimationController _animationController;
+  late final Animation<Offset> _floatingAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    // Gentle floating loop animation (3 seconds duration)
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _floatingAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0, -0.03), // Subtle 3% upward movement
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isMobile = size.width < 800;
 
+    // Updated Image Widget: Circular boundary removed for the seamless look
     Widget profileImage() {
-      return Container(
-        width: isMobile ? 220 : 280, // Mobile pe thoda chhota
-        height: isMobile ? 220 : 280,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: CustomColor.bgLight,
-          border: Border.all(color: CustomColor.yellowPrimary, width: 4),
-          boxShadow: [
-            BoxShadow(
-                color: CustomColor.yellowPrimary.withOpacity(0.2),
-                blurRadius: 30,
-                spreadRadius: 5
-            ),
-          ],
-          image: const DecorationImage(
-            image: AssetImage('assets/images/port_img.jpeg'),
+      return SlideTransition(
+        position: _floatingAnimation,
+        child: Container(
+          width: isMobile ? 260 : 380, // Dynamic sizes to suit transparent PNGs
+          height: isMobile ? 300 : 450,
+          child: Image.asset(
+            'assets/images/pii.png', // Ensure this is a background-removed PNG
             fit: BoxFit.contain,
           ),
         ),
       );
     }
 
-    // Text Content ko bhi isolate kiya
+    // Text Content with subtle refinements
     Widget textContent() {
       return Column(
         crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
@@ -44,12 +68,11 @@ class HeroSection extends StatelessWidget {
             style: TextStyle(fontSize: 20, color: CustomColor.yellowPrimary, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
-
           Text(
             "Flutter Developer building AI-powered Mobile Products",
             textAlign: isMobile ? TextAlign.center : TextAlign.start,
             style: TextStyle(
-              fontSize: isMobile ? 32 : 50, // Mobile font thoda adjust kiya
+              fontSize: isMobile ? 32 : 50,
               fontWeight: FontWeight.w900,
               color: CustomColor.whitePrimary,
               height: 1.1,
@@ -57,14 +80,15 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'I design and ship Flutter apps that feel native, perform at scale, and solve real problems. Focused on clean architecture,seamless UI, and production-ready performance',
+            'I build high-performance Flutter applications with clean architecture and seamless animations. From custom e-commerce shops to AI-powered products, I transform ideas into scalable, production-ready mobile apps.'
+                '',
             textAlign: isMobile ? TextAlign.center : TextAlign.start,
             style: const TextStyle(fontSize: 16, color: CustomColor.whiteSecondary, height: 1.5),
           ),
           const SizedBox(height: 30),
           ElevatedButton(
             onPressed: () {
-              onNavClick(3); // Scroll to Contact
+              widget.onNavClick(3); // Scroll to Contact
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: CustomColor.yellowPrimary,
@@ -80,27 +104,39 @@ class HeroSection extends StatelessWidget {
 
     // Main Layout Logic
     return Container(
-      constraints: BoxConstraints(minHeight: isMobile ? 700 : 500), // Mobile pe height badhayi content ke liye
+      constraints: BoxConstraints(minHeight: isMobile ? 650 : 550),
       child: isMobile
-      // MOBILE LAYOUT: Column (Image Top, Text Bottom)
+      // MOBILE LAYOUT
           ? Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 30),
-          profileImage(), // Image Pehle
-          const SizedBox(height: 40),
-          textContent(), // Text Baad mein
+          profileImage(),
+          const SizedBox(height: 30),
+          textContent(),
           const SizedBox(height: 30),
         ],
       )
-      // DESKTOP LAYOUT: Row (Text Left, Image Right)
+      // DESKTOP LAYOUT
           : Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end, // Aligns image perfectly flat at the bottom edge
         children: [
-          Expanded(flex: 2, child: textContent()),
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 40.0), // Padding to keep text centered vertically
+              child: textContent(),
+            ),
+          ),
           const SizedBox(width: 40),
-          Expanded(flex: 1, child: Center(child: profileImage())),
+          Expanded(
+            flex: 4,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: profileImage(),
+            ),
+          ),
         ],
       ),
     );

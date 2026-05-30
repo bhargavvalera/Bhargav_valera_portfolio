@@ -5,10 +5,10 @@
 import FlutterMacOS
 import Foundation
 
-import rive_native
+import rive_common
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  RiveNativePlugin.register(with: registry.registrar(forPlugin: "RiveNativePlugin"))
+  RivePlugin.register(with: registry.registrar(forPlugin: "RivePlugin"))
   UrlLauncherPlugin.register(with: registry.registrar(forPlugin: "UrlLauncherPlugin"))
 }

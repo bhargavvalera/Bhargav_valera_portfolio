@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart'; // Add this package
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Add this package
 import '../constants/colors.dart';
 
 class HeroSection extends StatefulWidget {
@@ -37,6 +39,14 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
     super.dispose();
   }
 
+  // Helper method to open links
+  Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      debugPrint('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -46,7 +56,7 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
     Widget profileImage() {
       return SlideTransition(
         position: _floatingAnimation,
-        child: Container(
+        child: SizedBox(
           width: isMobile ? 260 : 380, // Dynamic sizes to suit transparent PNGs
           height: isMobile ? 300 : 450,
           child: Image.asset(
@@ -80,23 +90,82 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
           ),
           const SizedBox(height: 20),
           Text(
-            'I build high-performance Flutter applications with clean architecture and seamless animations. From custom e-commerce shops to AI-powered products, I transform ideas into scalable, production-ready mobile apps.'
-                '',
+            'I build high-performance Flutter applications with clean architecture and seamless animations. From custom e-commerce shops to AI-powered products, I transform ideas into scalable, production-ready mobile apps.',
             textAlign: isMobile ? TextAlign.center : TextAlign.start,
             style: const TextStyle(fontSize: 16, color: CustomColor.whiteSecondary, height: 1.5),
           ),
           const SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {
-              widget.onNavClick(3); // Scroll to Contact
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: CustomColor.yellowPrimary,
-              foregroundColor: Colors.black87,
-              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 18),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            ),
-            child: const Text("Get in Touch", style: TextStyle(fontWeight: FontWeight.bold)),
+
+          // --- UPDATED CALL TO ACTION AREA ---
+          Wrap(
+            spacing: 16, // Horizontal space between items
+            runSpacing: 16, // Vertical space if they wrap on mobile
+            alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              // 1. GET IN TOUCH BUTTON (Primary)
+              ElevatedButton(
+                onPressed: () {
+                  widget.onNavClick(3); // Scroll to Contact
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: CustomColor.yellowPrimary,
+                  foregroundColor: Colors.black87,
+                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                ),
+                child: const Text("Get in Touch", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+              ),
+
+              // 2. DOWNLOAD RESUME BUTTON (Secondary/Outline)
+              OutlinedButton.icon(
+                onPressed: () => _launchURL(
+                    'https://drive.google.com/file/d/1jdfjcXRfUqXkc1ka-Fr1CNz7R2RtMPzP/view?usp=sharing'
+      ), // ),
+                icon: const Icon(Icons.download_rounded, size: 18, color: CustomColor.whitePrimary),
+                label: const Text(
+                  "Resume",
+                  style: TextStyle(color: CustomColor.whitePrimary, fontWeight: FontWeight.bold, fontSize: 15),
+                ),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.white24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                ),
+              ),
+
+              // 3. GITHUB ICON
+              InkWell(
+                onTap: () => _launchURL('https://github.com/bhargavvalera'), // Add GitHub URL
+                borderRadius: BorderRadius.circular(50),
+                hoverColor: CustomColor.yellowPrimary.withOpacity(0.1),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white24),
+                    color: Colors.transparent, // Ensures no white background
+                  ),
+                  child: const FaIcon(FontAwesomeIcons.github, color: CustomColor.whiteSecondary, size: 20),
+                ),
+              ),
+
+              // 4. LINKEDIN ICON
+              InkWell(
+                onTap: () => _launchURL('https://www.linkedin.com/in/bhargav-valera-780738229/'), // Add LinkedIn URL
+                borderRadius: BorderRadius.circular(50),
+                hoverColor: CustomColor.yellowPrimary.withOpacity(0.1),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white24),
+                    color: Colors.blue, // Ensures no white background
+                  ),
+                  child: const FaIcon(FontAwesomeIcons.linkedinIn, color: CustomColor.whiteSecondary, size: 20),
+                ),
+              ),
+            ],
           ),
         ],
       );

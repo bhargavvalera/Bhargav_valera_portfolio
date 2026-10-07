@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart'; // Add this package
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Add this package
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants/colors.dart';
 
 class HeroSection extends StatefulWidget {
@@ -120,7 +120,8 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
               // 2. DOWNLOAD RESUME BUTTON (Secondary/Outline)
               OutlinedButton.icon(
                 onPressed: () => _launchURL(
-                    'https://drive.google.com/file/d/1jdfjcXRfUqXkc1ka-Fr1CNz7R2RtMPzP/view?usp=sharing'
+                  'https://drive.google.com/file/d/1GuIjDCDSIxKY6Td6MKngixIewap7fZ4g/view?usp=sharing'
+                    // 'https://drive.google.com/file/d/1jdfjcXRfUqXkc1ka-Fr1CNz7R2RtMPzP/view?usp=sharing'
       ), // ),
                 icon: const Icon(Icons.download_rounded, size: 18, color: CustomColor.whitePrimary),
                 label: const Text(

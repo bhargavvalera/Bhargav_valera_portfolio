@@ -23,13 +23,13 @@ List<Project> myProjects = [
     accentColor: Colors.orangeAccent,
   ),
   Project(
-    title: "SkySnap Weather",
-    description: "Real-time weather tracking with dynamic Lottie animations and location services.",
-    tags: ["REST API", "Geolocator", "UI/UX"],
+    title: "MR4U",
+    description: "Medicine Reminder 4 U is a Flutter app with SQLite and custom alarm-like notifications to manage medicines and ensure timely reminders.",
+    tags: ["Flutter", "SQLite", "UI/UX"],
     accentColor: Colors.blueAccent,
   ),
   Project(
-    title: "Amoncar Booking App",
+    title: "Amoncar Caterers",
     description: "Digital menu catalogue allowing clients to customize food packages and estimate costs.",
     tags: ["Node.js", "REST API", "GetX"],
     accentColor: Colors.greenAccent,

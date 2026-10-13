@@ -39,15 +39,14 @@ List<Project> myProjects = [
   ),
 
   Project(
-      title: "SkySnap",
-      description: "A minimalist, real-time weather application featuring dynamic animations, location-based 7-day forecasts, and detailed atmospheric data visualization.",
-      techStack: "Flutter, OpenWeatherMap API, Geolocator, Lottie",
-      imagePath: 'assets/images/skysnap_p.jpeg',
-      issue: "Fetching real-time location data and simultaneously loading high-quality Lottie weather animations caused a noticeable delay and a jittery loading screen when the app opened.",
-      solution: "I implemented a future-builder setup to fetch location data asynchronously in the background, while pre-caching the animations.",
-      impact: "Decreased initial load time by 60% and maintained a flawless 60fps animation render, delivering a premium feel that keeps users returning."
+    title: "MR4U",
+    imagePath: 'assets/images/mr4u.jpeg',
+    description: "Medicine Reminder 4 U is a Flutter-based medication management app that allows users to add medicines and schedule morning, afternoon, and evening reminders. It uses SQLite for local data storage and custom notifications to deliver alarm-like reminders, helping users take their medicines on time, even without an internet connection.",
+    techStack: "Flutter, Dart, SQLite, Local Notifications, Custom Alarm Reminders",
+    issue: "Managing medicine schedules and delivering timely reminders while maintaining reliable local data storage and notification functionality.",
+    solution: "I implemented SQLite for persistent local storage and custom notification scheduling to manage medicine details and trigger reminders at user-defined times.",
+    impact: "Enabled users to manage medication schedules offline, receive timely reminders, and access their saved medicine details without requiring a backend server.",
   ),
-
   Project(
       title: "ATPT",
       imagePath: 'assets/images/atpt_p.jpeg',
